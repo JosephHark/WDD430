@@ -8,7 +8,7 @@ import {Contact} from '../contact.model';
 export class ContactListComponent implements OnInit {
   contacts: Contact[]= [
     new Contact(
-      "1", "R. Kent Jackson", "jacksonk@byui.edu", "208-496-3771", "../../assets/images/jacksonk.jpg", null
+      "1", "R. Kent Jackson", "jacksonk@byui.edu", "208-496-3771", "src/assets/images/jacksonk.jpg", null
     )
   ]
   constructor() { }
