@@ -1,6 +1,5 @@
 import { Component, OnInit} from '@angular/core';
 import { Contact } from '../contact.model';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contact-list',
@@ -9,7 +8,7 @@ import { Subscription } from 'rxjs';
 })
 export class ContactListComponent implements OnInit {
   //list of contacts
-  contacts: Contact[] = []
+   contacts = [];
  
   ngOnInit(): void {
 
