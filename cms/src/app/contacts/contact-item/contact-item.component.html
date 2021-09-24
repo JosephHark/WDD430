@@ -1,0 +1,8 @@
+<a href="#" class="list-group-item clearfix" *ngFor="let contact of contacts">
+    <div class="pull-left">
+      <p class="list-group-item-heading">{{contact.name}}</p>
+    </div>
+    <span class="pull-right">
+      <img src="{{contact.imageUrl}}" alt="{{contact.name}}" style="width:75px; height:75px;" >
+    </span>
+  </a>
