@@ -6,7 +6,7 @@ export class Contact{
        this.email= email;
        this.phone= phone;
        this.imageUrl= imageUrl;
-       this.group= group
+       this.group= group;
 
    }
 }
