@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit,Output } from '@angular/core';
 import {Contact} from '../contact.model';
 @Component({
   selector: 'app-contact-list',
@@ -6,7 +6,10 @@ import {Contact} from '../contact.model';
   styleUrls: ['./contact-list.component.css']
 })
 export class ContactListComponent implements OnInit {
-   contacts: Array<Contact>
+  listEmitted = new EventEmitter<Contact>();
+  @Output() selectedContactEvent;
+  contacts: Array<Contact>
+  
   constructor() { 
     this.contacts= [
     new Contact(
@@ -19,6 +22,9 @@ export class ContactListComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+  onSelected(contact: Contact){
+    this.listEmitted.emit(this.selectedContactEvent);
   }
 
 }
