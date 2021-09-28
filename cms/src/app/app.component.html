@@ -1,6 +1,6 @@
-<cms-header (selectedFeatureEvent)=swithView($event)></cms-header>
+<app-header (selectedFeatureEvent)="swithView($event)"></app-header>
 <div class="container pull-left">
-  <cms-documents></cms-documents>
-  <cms-message-list></cms-message-list>
-  <cms-contacts></cms-contacts>
+  <app-documents *ngIf="loadedFeature === 'documents"></app-documents>
+  <app-message-list *ngIf="loadedFeature === 'message"></app-message-list>
+  <app-contacts *ngIf="loadedFeature === 'contacts"></app-contacts>
 </div>
