@@ -12,6 +12,10 @@ import { DocumentListComponent } from './documents/document-list/document-list.c
 import { DocumentItemComponent } from './documents/document-item/document-item.component';
 import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
 import { Document } from './documents/document.model.ts/document.model.ts.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ItemComponent } from './messages/item/item.component';
+import { MessageListComponent } from './messages/message-list/message-list.component';
+import { MessageItemComponent } from './messages/message-item/message-item.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { Document } from './documents/document.model.ts/document.model.ts.compon
     DocumentListComponent,
     DocumentItemComponent,
     DocumentDetailComponent,
-    Document.Model.TsComponent
+    Document.Model.TsComponent,
+    MessagesComponent,
+    ItemComponent,
+    MessageListComponent,
+    MessageItemComponent
   ],
   imports: [
     BrowserModule
