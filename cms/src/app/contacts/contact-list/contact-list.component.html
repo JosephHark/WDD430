@@ -13,7 +13,7 @@
 
   <div class="panel-body">
     <div class="row">
-      <app-contact-item (click)="onSelected('contacts')" [contact]="contact" *ngFor="let contact of contacts"></app-contact-item>
+      <app-contact-item (click)="selectedContactEvent('contact')" [contact]="contact" *ngFor="let contact of contacts"></app-contact-item>
     </div>
   </div>
 </div>
