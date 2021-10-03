@@ -1,15 +1,16 @@
-import { Component, EventEmitter, OnInit,Output } from '@angular/core';
-import {Contact} from '../contact.model';
-@Component({
-  selector: 'app-contact-list',
-  templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.css']
-})
+
+  import { Component, EventEmitter, OnInit,Output } from '@angular/core';
+  import {Contact} from '../contact.model';
+  @Component({
+    selector: 'app-contact-list',
+    templateUrl: './contact-list.component.html',
+    styleUrls: ['./contact-list.component.css']
+  })
 export class ContactListComponent implements OnInit {
-  listEmitted = new EventEmitter<Contact>();
-  @Output() selectedContactEvent;
+  //object to emit event
+  @Output() selectedContactEvent = new EventEmitter<Contact>();
+  //list of contacts
   contacts: Array<Contact>
-  
   constructor() { 
     this.contacts= [
     new Contact(
@@ -20,10 +21,13 @@ export class ContactListComponent implements OnInit {
     )
     ]
   }
+  ngOnInit(): void {
+  }
 
-  ngOnInit() {
-  }
+  //method to emit event
   onSelected(contact: Contact) {
-      this.selectedContactEvent.emit(contact);
-    }
+    //emit event passing the contact as data
+    this.selectedContactEvent.emit(contact);
   }
+
+}
