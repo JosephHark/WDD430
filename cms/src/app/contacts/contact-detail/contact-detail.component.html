@@ -9,6 +9,7 @@
       <span class="pull-right btn-toolbar">
         <a class="btn btn-primary">Edit</a>
         <a class="btn btn-danger">Delete</a>
+        
       </span>
     </div>
   </div>
@@ -16,8 +17,8 @@
   <div class=" panel-body">
     <div class="row">
       <div class="col-xs-12">
-        <p><strong>Email:</strong>{{contact.email}}</p>
-        <p><strong>Phone:</strong>{{contact.phone}}</p>
+        <label for="email">Email: {{ contact.email }}</label>
+        <label for="phone">Phone: {{ contact.phone }}</label>
       </div>
     </div>
 

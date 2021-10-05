@@ -6,7 +6,7 @@
   </div>
   <div class="col-md-7">
     <h2>
-      <app-contact-detail ngIf="selectedContact" [contact]="selectedContact"></app-contact-detail>
+      <app-contact-detail [contact]="selectedContact" *ngIf="selectedContact"></app-contact-detail>
     </h2>
   </div>
 </div>
