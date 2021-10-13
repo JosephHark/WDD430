@@ -7,8 +7,6 @@ import { DocumentsService } from '../document.service';
   styleUrls: ['./document-list.component.css']
 })
 export class DocumentListComponent implements OnInit {
-  
-  //array/list of documents
   documents: Document[] = [];
 
   constructor(private documentService: DocumentsService) { }
@@ -17,7 +15,6 @@ export class DocumentListComponent implements OnInit {
     this.documents = this.documentService.getContacts();
   }
   onSelectedDocumentEvent(document: Document){
-
     this.documentService.documentSelectedEvent.emit(document);
   }
 

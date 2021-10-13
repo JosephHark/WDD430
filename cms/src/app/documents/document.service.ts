@@ -20,7 +20,7 @@ export class DocumentsService {
 
   getContact(id: string): Document{
     for(let document of this.documents){
-      if(document.id === id){
+      if(document.Id === id){
         return document;
       }
     }
