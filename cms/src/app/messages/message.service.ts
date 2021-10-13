@@ -19,7 +19,7 @@ export class MessagesService {
 
   getMessage(id: string): Message{
     for(let message of this.messages){
-      if(message.id === id){
+      if(message.Id === id){
         return message;
       }
     }
