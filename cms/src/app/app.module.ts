@@ -17,7 +17,6 @@ import { MessageItemComponent } from './messages/message-item/message-item.compo
 import { MessageEditComponent } from './messages/message-edit/message-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
-import { ContactsEditComponent } from './contacts/contacts-edit/contacts-edit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
 
@@ -40,7 +39,6 @@ import { ContactEditComponent } from './contacts/contact-edit/contact-edit.compo
     MessageItemComponent,
     MessageEditComponent,
     DocumentEditComponent,
-    ContactsEditComponent,
     ContactEditComponent,
   ],
   imports: [

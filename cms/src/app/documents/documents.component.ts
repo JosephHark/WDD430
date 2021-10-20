@@ -11,7 +11,7 @@ export class DocumentsComponent implements OnInit {
   constructor(private documentService: DocumentsService) { }
 
   ngOnInit(): void {
-    this.documentService.documentSelectedEvent.subscribe(
+    this.documentService.documentChangedEvent.subscribe(
       (document: Document) => {
         this.selectedDocument = document;
       }
