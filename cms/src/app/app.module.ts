@@ -19,6 +19,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
 import { ContactsEditComponent } from './contacts/contacts-edit/contacts-edit.component';
 import { AppRoutingModule } from './app-routing.module';
+import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { AppRoutingModule } from './app-routing.module';
     MessageEditComponent,
     DocumentEditComponent,
     ContactsEditComponent,
+    ContactEditComponent,
   ],
   imports: [
     BrowserModule,
