@@ -17,29 +17,21 @@ export class DocumentDetailComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    //subscribe to the params of the current active route
     this.route.params.subscribe(
       (params: Params) => {
-        //get the specific document (passing id param) and store it in document
         this.document = this.documentService.getDocument(params['id']);
       }
     )
   }
 
-  //method to view document
   onView() {
-    //if the document exists..
     if (this.document.url) {
-      //open it in another window
       this.nativeWindow.open(this.document.url);
     }
   }
 
-  //method to delete
   onDelete() {
-    //delete using service
     this.documentService.deleteDocument(this.document);
-    //navigate to /documents relative to this route
     this.router.navigate(['/documents'], { relativeTo: this.route });
   }
 }

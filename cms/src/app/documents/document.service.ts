@@ -14,24 +14,19 @@ export class DocumentsService {
     this.documents = MOCKDOCUMENTS;
   }
 
-  getDocument(id: string): Document{
-    for(let document of this.documents){
-      if(document.id === id){
-        return document;
-      }
-    }
-    return null
+  getDocument(index: number){
+    return this.documents[index];
   }
-  deleteDocument(document: Document) {
-    if (document === null || document === undefined) {
-      return;
-    }
-    const pos = this.documents.indexOf(document);
 
-    if (pos < 0) {
-      return;
-    }
-    this.documents.splice(pos, 1);
-    this.documentChangedEvent.emit(this.documents.slice());
+  deleteDocument(document: Document) {
+  if (!document) {
+     return;
+  }
+  const pos = this.documents.indexOf(document);
+  if (pos < 0) {
+     return;
+  }
+  this.documents.splice(pos, 1);
+  this.documentChangedEvent.emit(this.documents.slice());
   }
 }
