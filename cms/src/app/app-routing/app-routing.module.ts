@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
-import { DocumentsComponent } from './documents/documents.component';
-import { MessageListComponent } from './messages/message-list/message-list.component';
-import { ContactsComponent } from './contacts/contacts.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ContactDetailComponent } from '../contacts/contact-detail/contact-detail.component';
+import { ContactsEditComponent } from './contacts/contacts-edit/contacts-edit.component';
+import { ContactsComponent } from '../contacts/contacts.component';
+import { DocumentDetailComponent } from '../documents/document-detail/document-detail.component';
+import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
+import { DocumentsComponent } from '../documents/documents.component';
+import { MessageListComponent } from '../messages/message-list/message-list.component';
 
 const appRoutes: Routes = [
   {
