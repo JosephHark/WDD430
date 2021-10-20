@@ -11,6 +11,7 @@ export class ContactDetailComponent implements OnInit {
   contact: Contact;
   constructor(private contactService: ContactService, private router: Router, private route: ActivatedRoute) { }
   ngOnInit(): void {
+    //subscribe to current active route and get the id from param
     this.route.params.subscribe(
       (params: Params) => {
         //retrieve contact that has id from params and store it in contact property
@@ -18,6 +19,7 @@ export class ContactDetailComponent implements OnInit {
       }
     )
   }
+
   onDelete() {
     //delete using service
     this.contactService.deleteContact(this.contact);

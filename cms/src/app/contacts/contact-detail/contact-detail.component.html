@@ -7,8 +7,9 @@
       </span>
 
       <span class="pull-right btn-toolbar">
-        <a class="btn btn-primary">Edit</a>
-        <a class="btn btn-danger">Delete</a>
+        <a class="btn btn-primary" (click)="onView()">View</a>
+        <a class="btn btn-info" routerLink="edit">Edit</a>
+        <a class="btn btn-danger" (click)="onDelete()">Delete</a>
         
       </span>
     </div>
