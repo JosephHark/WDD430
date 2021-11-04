@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Contact } from '../contact.model';
-import { ContactService } from '../contacts.service';
+import { ContactsService } from '../contacts.service';
 
 @Component({
   selector: 'app-contact-edit',
@@ -10,137 +10,46 @@ import { ContactService } from '../contacts.service';
   styleUrls: ['./contact-edit.component.css']
 })
 export class ContactEditComponent implements OnInit {
-//property for contact copy and original contact
-contact: Contact = null;
-originalContact: Contact;
-//array of contacts
-groupContacts: Contact[] = [];
-//booleans to check if editmode is on nd if contact has a group
-editMode: boolean = false;
-hasGroup: boolean = false;
-invalidGroupContact: boolean;
-constructor(private contactService: ContactService, private router: Router, private route: ActivatedRoute) { }
+  id: number;
+  editMode = false;
+  contact: Contact
+  originalContact: Contact;
+constructor(private ContactsService: ContactsService,private router: Router,private route: ActivatedRoute) { }
 ngOnInit(): void {
-  //subscribe to changes in the route
-  this.route.params.subscribe(
-    (params: Params) => {
-      //retrieve id from params
-      const id = params['id'];
-
-      //if id doesn't exist...
-      if (!id) {
-        //we are not on edit mode, exit
-        this.editMode = false;
-        return;
-      }
-
-      //if it does exist, retrieve contact by id from service and store in original
-      this.originalContact = this.contactService.getContact(id);
-
-      //if a contact with tht id does not exists...
-      if (!this.originalContact) {
-        //exit
-        return;
-      }
-
-      //if it does exists, then we ar eon edit mode
-      this.editMode = true;
-      //clone original contact into copy contact
-      this.contact = JSON.parse(JSON.stringify(this.originalContact));
-
-      //check if contact has a group
-      if (this.contact.group !== null && this.contact.group !== undefined) {
-        //set has group to true
-        this.hasGroup = true;
-        //make a clone of the original contact group property by sstoring into conntact
-        this.contact = JSON.parse(JSON.stringify(this.originalContact.group));
-        //make a clone of that contact group property and store into group ccontacts prop
-        this.groupContacts = this.contact.group.slice();
-      }
+  this.route.params.subscribe((params: Params)=> {
+    this.id =+params['id'];
+    if (this.id == null){
+      this.editMode = false;
+      return
     }
-  )
-}
-
-onCancel() {
-  this.router.navigate(['/contacts'], { relativeTo: this.route });
-}
-
-onSubmit(form: NgForm) {
-  //get values from form
-  const values = form.value;
-
-  //use values to populate new contact object
-  const newContact = new Contact(null, values.name, values.email, values.phone, values.imageUrl, this.groupContacts);
-
-  //if edit mode is true
-  if (this.editMode === true) {
-    //then update
-    this.contactService.updateContact(this.originalContact, newContact);
-  } else {
-    //if not, then add new
-    this.contactService.addContact(newContact);
-  }
-
-  //navigate away after submiting
-  this.router.navigate(['/contacts'], { relativeTo: this.route });
-}
-
-//method to determine if contact is already in contact group array
-isInvalidContact(newContact: Contact) {
-  //if contact was NOT passed to the function
-  if (!newContact) {
-    //it is INVALID
-    return true;
-  }
-
-  //if the contact being draged is the same of the contact where it's being dropped...
-  if (newContact.id === this.contact.id) {
-    //it is INVALID
-    return true;
-  }
-
-  //loop through all contacts in the array...
-  for (let i = 0; i < this.groupContacts.length; i++) {
-    //check if the contact being dragged already exists in the array
-    if (newContact.id === this.groupContacts[i].id) {
-      //if so, is INVALID
-      return true;
+    const index = JSON.stringify(this.id)
+    this.originalContact = this.ContactsService.getContact(index)
+    if (this.originalContact == null){
+      return
     }
-  }
+    this.editMode = true;
+    this.contact = JSON.parse(JSON.stringify(this.originalContact));
 
-  //if passes all tests, then it is NOT invalid
-  return false;
+    })
 }
 
-//method to add contact to group on dragg
-addToGroup($event: any) {
-  //get data from event
-  const selectedContact: Contact = $event.dragData;
-  //check if that data is valid and store it
-  this.invalidGroupContact = this.isInvalidContact(selectedContact);
-  //if it is invalid..
-  if (this.invalidGroupContact) {
-    //exit
-    return;
+onSubmit(form: NgForm){
+  const value = form.value;
+  const id = JSON.stringify(this.id)
+  let group = null;
+  console.log(value.name)
+  const newDocument = new Contact(value.name, value.email, value.imageUrl, id, value.phone, group);
+  console.log(this.editMode)
+  if(this.editMode == true){
+    this.ContactsService.updateContact(this.originalContact, newDocument)
+  } else{
+    this.ContactsService.addContact(newDocument);
   }
-  //if it is valid, push into array of contacts
-  this.groupContacts.push(selectedContact);
-  //set invalid variable to false
-  this.invalidGroupContact = false;
+  this.onCancel()
 }
 
-//react to removing item
-onRemoveItem(idx: number) {
-  //if the index (position of contact) is not in the array...
-  if (idx < 0 || idx >= this.groupContacts.length) {
-    //exit
-    return;
-  }
-
-  //if it is in the array, delete only that contact
-  this.groupContacts.splice(idx, 1);
-  //set invalid to false
-  this.invalidGroupContact = false;
+onCancel(){
+  this.router.navigate(['../'], {relativeTo: this.route})
 }
 
 }
