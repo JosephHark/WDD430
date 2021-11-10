@@ -1,29 +1,36 @@
+import { Component, OnDestroy, OnInit,  } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Contact } from '../contact.model'
+import { ContactsService } from '../contacts.service';
 
-  import { Component, EventEmitter, OnInit,Output, OnDestroy } from '@angular/core';
-  import {Contact} from '../contact.model';
-  import { ContactsService } from '../contacts.service';
-  import { Subscription } from 'rxjs';
-  @Component({
-    selector: 'app-contact-list',
-    templateUrl: './contact-list.component.html',
-    styleUrls: ['./contact-list.component.css']
-  })
-export class ContactListComponent implements OnInit, OnDestroy {
-  contacts: Contact[] = []
+@Component({
+  selector: 'app-contacts-list',
+  templateUrl: './contacts-list.component.html',
+  styleUrls: ['./contacts-list.component.css']
+})
+export class ContactsListComponent implements OnInit, OnDestroy{
+  term: string;                              
+  contacts: Contact[] = [];
   private subscription: Subscription;
-  //inject contact service
-  constructor(private ContactsService: ContactsService) {
-  }
+  constructor(private contactService: ContactsService) { }
+
   ngOnInit(): void {
-    this.contacts = this.ContactsService.getContacts();
-    this. subscription = this.ContactsService.contactChangedEvent.subscribe(
-      (contacts: Contact[]) => {
+    this.subscription = this.contactService.contactListChangedEvent
+      .subscribe((contacts: Contact[]) => {
         this.contacts = contacts;
-        console.log(contacts)
-      }
-    );
+      });
+
+    this.contactService.getContacts();
   }
-  ngOnDestroy() {
+
+  search(value: string) {
+
+    this.term = value;
+    
+  }
+
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
