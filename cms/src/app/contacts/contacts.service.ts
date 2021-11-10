@@ -8,11 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ContactsService {
   contactChangedEvent = new EventEmitter<Contact[]>();
-
   contactListChangedEvent = new Subject<Contact[]>();
-
   maxContactId: number;
-
   contacts: Contact[] = [];
 
   constructor(private http: HttpClient) {
@@ -37,7 +34,6 @@ export class ContactsService {
   }
 
   getContact(id: string): Contact {
-
     for (const contact of this.contacts) {
       if (contact.id === id) {
         return contact;
