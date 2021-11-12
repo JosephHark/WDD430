@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class MessagesService {
-  messageListChangedEvent = new Subject<Message[]>();
+  messageChangeEvent = new Subject<Message[]>();
   messages: Message[] = [];
 
   maxMessageId: number;
@@ -16,15 +16,15 @@ export class MessagesService {
   //inject http client
   constructor(private http: HttpClient) {
     this.getMessages();
-
+  }
     getMessages() {
     this.http.get('https://cms-app-d5fce.firebaseio.com/messages.json')
       .subscribe(
         (messages: Message[]) => {
           this.messages = messages;
           this.maxMessageId = this.getMaxId();
-          this.messages.sort((a, b) => (a.id < b.id) ? 1 : (a.id > b.id) ? -1 : 0)
-          this.messageListChangedEvent.next(this.messages.slice());
+          this.messages.sort((a, b) => (a.Id < b.Id) ? 1 : (a.Id > b.Id) ? -1 : 0)
+          this.messageChangeEvent.next(this.messages.slice());
         },
         (error: any) => {
           console.log(error);
@@ -32,9 +32,9 @@ export class MessagesService {
       )
   }
 
-  getMessage(id: string): Message {
+  getMessage(Id: string): Message {
     for (const message of this.messages) {
-      if (message.id === id) {
+      if (message.Id === Id) {
         return message;
       }
     }
@@ -44,7 +44,7 @@ export class MessagesService {
   getMaxId(): number {
     let maxId = 0;
     for (const message of this.messages) {
-      const currentId = +message.id;
+      const currentId = +message.Id;
       if (currentId > maxId) {
         maxId = currentId;
       }
@@ -67,7 +67,7 @@ export class MessagesService {
     this.http.put('https://cms-app-d5fce.firebaseio.com/messages.json', messages, { headers: headers })
       .subscribe(
         () => {
-          this.messageListChangedEvent.next(this.messages.slice());
+          this.messageChangeEvent.next(this.messages.slice());
         }
       )
   }

@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ContactsComponent } from './contacts/contacts.component';
-import { ContactListComponent } from './contacts/contact-list/contact-list.component';
+import { ContactsListComponent } from './contacts/contact-list/contact-list.component';
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
 import { HeaderComponent } from './header.component';
 import { ContactItemComponent } from './contacts/contact-item/contact-item.component';
@@ -27,7 +27,7 @@ import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
   declarations: [
     AppComponent,
     ContactsComponent,
-    ContactListComponent,
+    ContactsListComponent,
     ContactDetailComponent,
     HeaderComponent,
     ContactItemComponent,

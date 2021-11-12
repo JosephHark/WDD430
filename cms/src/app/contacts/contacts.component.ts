@@ -8,17 +8,15 @@ import { ContactsService } from './contacts.service';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
-  //object for the selected contact
-  selectedContact: Contact;
-
-  //inject contact service
-  constructor(private contactService: ContactsService) { }
-
-  ngOnInit(): void {
-    this.contactService.contactSelectedEvent.subscribe(contact => {
-      this.selectedContact = contact;
-    });
+    selectedContact: Contact;
+  
+    constructor(private contactService: ContactsService) { }
+  
+    ngOnInit(): void {
+      this.contactService.contactChangedEvent.subscribe((contact: Contact) => {
+        this.selectedContact = contact;
+      })
+    }
+  
+  
   }
-
- 
-}
