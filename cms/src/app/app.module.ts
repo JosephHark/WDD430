@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ContactsComponent } from './contacts/contacts.component';
-import { ContactsListComponent } from './contacts/contact-list/contact-list.component';
+import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
 import { HeaderComponent } from './header.component';
 import { ContactItemComponent } from './contacts/contact-item/contact-item.component';
@@ -26,8 +26,8 @@ import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    ContactsComponent,
-    ContactsListComponent,
+    ContactsComponent, 
+    ContactListComponent,
     ContactDetailComponent,
     HeaderComponent,
     ContactItemComponent,
@@ -46,6 +46,7 @@ import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     DndModule.forRoot()

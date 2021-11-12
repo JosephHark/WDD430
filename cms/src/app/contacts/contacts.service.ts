@@ -8,18 +8,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ContactsService {
   contactChangedEvent = new EventEmitter<Contact[]>();
+
   contactListChangedEvent = new Subject<Contact[]>();
+
   maxContactId: number;
+
   contacts: Contact[] = [];
 
   constructor(private http: HttpClient) {
-
     this.getContacts();
     this.maxContactId = this.getMaxId();
   }
 
   getContacts() {
-    this.http.get('https://cms-app-d5fce.firebaseio.com/contacts.json')
+    this.http.get('https://cmswithfirebase-1-default-rtdb.firebaseio.com/contacts.json')
       .subscribe(
         (contacts: Contact[]) => {
           this.contacts = contacts;
@@ -57,7 +59,6 @@ export class ContactsService {
     if (newContact === null || newContact === undefined) {
       return;
     }
-
     this.maxContactId++;
     newContact.id = this.maxContactId.toString();
     this.contacts.push(newContact);
@@ -68,7 +69,6 @@ export class ContactsService {
     if (originalContact === null || originalContact === undefined || newContact === null || newContact === undefined) {
       return;
     }
-
     const pos = this.contacts.indexOf(originalContact);
     if (pos < 0) {
       return;
@@ -99,7 +99,7 @@ export class ContactsService {
       'Content-Type': 'application/json'
     });
 
-    this.http.put('https://cms-app-d5fce.firebaseio.com/contacts.json', contacts, { headers: headers })
+    this.http.put('https://cmswithfirebase-1-default-rtdb.firebaseio.com/contacts.json', contacts, { headers: headers })
       .subscribe(
         () => {
           this.contactListChangedEvent.next(this.contacts.slice());

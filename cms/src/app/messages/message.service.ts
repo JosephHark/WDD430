@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Message } from './messages.model';
 import { MOCKMESSAGES } from './MOCKMESSAGES';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -54,7 +54,7 @@ export class MessagesService {
 
   addMessage(message: Message) {
     this.messages.push(message);
-    this.messageChangeEvent.emit(this.messages.slice());
+    this.messageChangeEvent.next(this.messages.slice());
     this.storeMessages();
   }
 
@@ -64,7 +64,7 @@ export class MessagesService {
     const headers = new HttpHeaders({
     });
 
-    this.http.put('https://cms-app-d5fce.firebaseio.com/messages.json', messages, { headers: headers })
+    this.http.put('https://cmswithfirebase-1-default-rtdb.firebaseio.com/messages.json', messages, { headers: headers })
       .subscribe(
         () => {
           this.messageChangeEvent.next(this.messages.slice());

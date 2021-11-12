@@ -20,7 +20,7 @@ export class DocumentsService {
   }
 
   getDocuments() {
-    this.http.get('https://cms-app-d5fce.firebaseio.com/documents.json')
+    this.http.get('https://cmswithfirebase-1-default-rtdb.firebaseio.com/documents.json')
       .subscribe(
         (documents: Document[]) => {
           this.documents = documents;
