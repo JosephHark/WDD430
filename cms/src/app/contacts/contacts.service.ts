@@ -8,11 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ContactsService {
   contactChangedEvent = new EventEmitter<Contact[]>();
-
   contactListChangedEvent = new Subject<Contact[]>();
-
   maxContactId: number;
-
   contacts: Contact[] = [];
 
   constructor(private http: HttpClient) {
@@ -84,7 +81,6 @@ export class ContactsService {
       return;
     }
     const pos = this.contacts.indexOf(contact);
-
     if (pos < 0) {
       return;
     }
@@ -94,7 +90,6 @@ export class ContactsService {
 
   storeContacts() {
     let contacts = JSON.stringify(this.contacts);
-
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });

@@ -8,23 +8,22 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class MessagesService {
-  messageChangeEvent = new Subject<Message[]>();
+  messageListChangedEvent = new Subject<Message[]>();
   messages: Message[] = [];
 
   maxMessageId: number;
 
-  //inject http client
   constructor(private http: HttpClient) {
     this.getMessages();
   }
-    getMessages() {
-    this.http.get('https://cms-app-d5fce.firebaseio.com/messages.json')
+  getMessages() {
+    this.http.get('https://cmswithfirebase-1-default-rtdb.firebaseio.com/messages.json')
       .subscribe(
         (messages: Message[]) => {
           this.messages = messages;
           this.maxMessageId = this.getMaxId();
           this.messages.sort((a, b) => (a.Id < b.Id) ? 1 : (a.Id > b.Id) ? -1 : 0)
-          this.messageChangeEvent.next(this.messages.slice());
+          this.messageListChangedEvent.next(this.messages.slice());
         },
         (error: any) => {
           console.log(error);
@@ -51,10 +50,8 @@ export class MessagesService {
     }
     return maxId;
   }
-
   addMessage(message: Message) {
     this.messages.push(message);
-    this.messageChangeEvent.next(this.messages.slice());
     this.storeMessages();
   }
 
@@ -62,12 +59,13 @@ export class MessagesService {
     let messages = JSON.stringify(this.messages);
 
     const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
     });
 
-    this.http.put('https://cmswithfirebase-1-default-rtdb.firebaseio.com/messages.json', messages, { headers: headers })
+    this.http.put('https://cmswithfirebase-1-default-rtdb.firebaseio.commessages.json', messages, { headers: headers })
       .subscribe(
         () => {
-          this.messageChangeEvent.next(this.messages.slice());
+          this.messageListChangedEvent.next(this.messages.slice());
         }
       )
   }
