@@ -62,7 +62,7 @@ export class MessagesService {
       'Content-Type': 'application/json'
     });
 
-    this.http.put('https://cmswithfirebase-1-default-rtdb.firebaseio.commessages.json', messages, { headers: headers })
+    this.http.put('https://cmswithfirebase-1-default-rtdb.firebaseio.com/messages.json', messages, { headers: headers })
       .subscribe(
         () => {
           this.messageListChangedEvent.next(this.messages.slice());
