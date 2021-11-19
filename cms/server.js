@@ -4,6 +4,7 @@ var path = require('path');
 var http = require('http');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var mongoose = require('mongoose')
 var logger = require('morgan');
 
 // import the routing file to handle the default (index) route
@@ -13,6 +14,8 @@ var index = require('./server/routes/app');
 const messageRoutes = require('./server/routes/messages');
 const contactRoutes = require('./server/routes/contacts');
 const documentsRoutes = require('./server/routes/documents');
+mongoose.connect('mongodb+srv://JosephHark:0KTpRWMG4VhBlFjt@cluster0.44wya.mongodb.net/test?authSource=admin&replicaSet=atlas-vo138t-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', { useNewUrlParser: true, useUnifiedTopology: true });
+
 var app = express(); // create an instance of express
 
 // Tell express to use the following parsers for POST data
