@@ -21,9 +21,7 @@ export class DocumentsService {
   }
 
   getDocuments() {
-
-    this.http.get('http://localhost:3000/documents')
-     
+    this.http.get('https://localhost:3000/documents')
       .subscribe(
         (documents: Document[]) => {
           this.documents = documents;

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Message } from './messages.model';
 import { MOCKMESSAGES } from './MOCKMESSAGES';
 import { HttpClient, HttpHeaders } from '@angular/common/http';

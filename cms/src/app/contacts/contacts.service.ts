@@ -13,7 +13,6 @@ export class ContactsService {
   contacts: Contact[] = [];
 
   constructor(private http: HttpClient) {
-    this.getContacts();
     this.maxContactId = this.getMaxId();
   }
 
