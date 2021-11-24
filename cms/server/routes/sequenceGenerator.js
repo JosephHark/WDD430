@@ -16,10 +16,10 @@ function SequenceGenerator() {
         });
       }
 
-      sequenceId = sequence._id;
-      maxDocumentId = sequence.maxDocumentId;
-      maxMessageId = sequence.maxMessageId;
-      maxContactId = sequence.maxContactId;
+      sequenceId = Sequence._id;
+      maxDocumentId = Sequence.maxDocumentId;
+      maxMessageId = Sequence.maxMessageId;
+      maxContactId = Sequence.maxContactId;
     });
 }
 

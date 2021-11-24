@@ -18,7 +18,7 @@ export class ContactsService {
   }
 
   getContacts() {
-    this.http.get('https://cmswithfirebase-1-default-rtdb.firebaseio.com/contacts.json')
+    this.http.get('https://localhost:3000/contacts')
       .subscribe(
         (contacts: Contact[]) => {
           this.contacts = contacts;

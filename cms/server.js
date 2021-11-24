@@ -14,19 +14,7 @@ var index = require('./server/routes/app');
 const messageRoutes = require('./server/routes/messages');
 const contactRoutes = require('./server/routes/contacts');
 const documentsRoutes = require('./server/routes/documents');
-mongoose.connect('mongodb+srv://JosephHark:0KTpRWMG4VhBlFjt@cluster0.44wya.mongodb.net/test?authSource=admin&replicaSet=atlas-vo138t-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true', { useNewUrlParser: true, useUnifiedTopology: true });
-
 // establish a connection to the mongo database
-mongoose.connect('mongodb://localhost:27017/cms',
-   { useNewUrlParser: true }, (err, res) => {
-      if (err) {
-         console.log('Connection failed: ' + err);
-      }
-      else {
-         console.log('Connected to database!');
-      }
-   }
-);
 
 var app = express(); // create an instance of express
 
@@ -64,6 +52,17 @@ app.use('/', index);
 app.use('/messages', messageRoutes);
 app.use('/contacts', contactRoutes);
 app.use('/documents', documentsRoutes);
+mongoose.connect('mongodb+srv://JosephHark:0KTpRWMG4VhBlFjt@cluster0.44wya.mongodb.net/test?authSource=admin&replicaSet=atlas-vo138t-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true',
+   { useNewUrlParser: true }, (err, res) => {
+      if (err) {
+         console.log('Connection failed: ' + err);
+      }
+      else {
+         console.log('Connected to database!');
+      }
+   }
+);
+
 // Tell express to map all other non-defined routes back to the index page
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/cms/index.html'));
