@@ -17,7 +17,7 @@ export class ContactsService {
   }
 
   getContacts() {
-    this.http.get('https://cmswithfirebase-1-default-rtdb.firebaseio.com/contacts.json')
+    this.http.get('https://localhost:3000/contacts')
       .subscribe(
         (contacts: Contact[]) => {
           this.contacts = contacts;
@@ -92,9 +92,8 @@ export class ContactsService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    this.http.get('https://localhost:3000/contacts')
 
-    this.http.put('https://localhost:3000/contacts', contacts, { headers: headers })
+    this.http.put('https://cmswithfirebase-1-default-rtdb.firebaseio.com/contacts.json', contacts, { headers: headers })
       .subscribe(
         () => {
           this.contactListChangedEvent.next(this.contacts.slice());

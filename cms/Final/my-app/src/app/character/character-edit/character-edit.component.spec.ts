@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CharacterDetailComponent } from './character-detail.component';
+import { ContactEditComponent } from './contact-edit.component';
 
-describe('CharacterDetailComponent', () => {
-  let component: CharacterDetailComponent;
-  let fixture: ComponentFixture<CharacterDetailComponent>;
+describe('ContactEditComponent', () => {
+  let component: ContactEditComponent;
+  let fixture: ComponentFixture<ContactEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CharacterDetailComponent ]
+      declarations: [ ContactEditComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CharacterDetailComponent);
+    fixture = TestBed.createComponent(ContactEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
