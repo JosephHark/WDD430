@@ -1,0 +1,19 @@
+<ion-content [scrollEvents]="true">
+    <form #settingsForm='ngForm' (ngSubmit)='save(settingsForm)'>
+      <ion-list>
+        <ion-item no-padding>
+          <ion-label>Number of Letters</ion-label>
+          <ion-range min="4" max="8" [(ngModel)]='settings.numLetters' #numLetters='ngModel' name='numLetters'>
+            <ion-label slot="start">4</ion-label>
+            <ion-label slot="end">8</ion-label>
+          </ion-range>
+        </ion-item>
+        <ion-item no-padding>
+          <ion-label>Fastest Time</ion-label>
+          <ion-label>{{fastestTime}}</ion-label>
+          <ion-button (click)='clear()'>Clear Score</ion-button>
+        </ion-item>
+      </ion-list>
+      <ion-button type='submit'>Save</ion-button>
+    </form>
+  </ion-content>

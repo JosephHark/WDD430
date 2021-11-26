@@ -1,0 +1,48 @@
+<form #answerForm='ngForm' (ngSubmit)='checkAnswer(answerForm)'>
+    <ion-list>
+      <ion-item no-padding *ngIf='started' id='instruction'>
+        How to Play: Guess the correct word. The closeness to the correct word will be indicated by the number of
+        bulls and cows. The number of bulls means the number of letters with the right value and position in your guess.
+        The number of cows is the
+        number of letters with the wrong value and position in your guess.
+      </ion-item>
+      <ion-item no-padding *ngIf='started && getFastestTime()'>
+        <ion-label class="ion-float-left">
+          <h2>Your Fastest Time {{getFastestTime()}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item no-padding *ngIf='started'>
+        <ion-label class="ion-float-left">
+          <h2>Time {{elapsedTime}}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item no-padding *ngIf='started'>
+        <ion-label>Answer</ion-label>
+        <ion-input [(ngModel)]='answer' #ans='ngModel' name='ans' required type="text" [minlength]='numLetters'
+          [maxlength]='numLetters'></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button type='submit' *ngIf='started'>Answer</ion-button>
+    <ion-button (click)='start();' *ngIf='!started'>Start Game</ion-button>
+    <ion-button (click)='stop(); started = false' *ngIf='started'>Stop Game</ion-button>
+  </form>
+  <ion-content [scrollEvents]="false">
+    <ion-list *ngIf='started'>
+      <ion-item no-padding *ngFor='let a of inputtedAnswers; let i = index'>
+        <ion-label>
+          {{i+1}}
+        </ion-label>
+        <ion-label>
+          {{a}}
+        </ion-label>
+        <ion-label>
+          {{getNumBullsandCows(a)}}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf='message'>
+      <ion-item no-padding>
+        {{message}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
