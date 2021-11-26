@@ -60,7 +60,7 @@ export class DocumentsService {
     }
     document.id = '';
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    this.http.post<{ message: string, document: Document }>('http://localhost:3000/documents',
+    this.http.post<{ message: string, document: Document }>('https://localhost:3000/documents',
       document,
       { headers: headers })
       .subscribe(
@@ -86,7 +86,7 @@ updateDocument(originalDocument: Document, newDocument: Document) {
   const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
   // update database
-  this.http.put('http://localhost:3000/documents/' + originalDocument.id,
+  this.http.put('https://localhost:3000/documents' + originalDocument.id,
     newDocument, { headers: headers })
     .subscribe(
       (response: Response) => {
@@ -106,7 +106,7 @@ deleteDocument(document: Document) {
   }
 
   // delete from database
-  this.http.delete('http://localhost:3000/documents/' + document.id)
+  this.http.delete('https://localhost:3000/documents' + document.id)
     .subscribe(
       (response: Response) => {
         this.documents.splice(pos, 1);
@@ -121,7 +121,7 @@ deleteDocument(document: Document) {
       'Content-Type': 'application/json'
     });
 
-    this.http.put('https://cmswithfirebase-1-default-rtdb.firebaseio.com/documents.json', documents, { headers: headers })
+    this.http.put('https://localhost:3000/documents', documents, { headers: headers })
       .subscribe(
         () => {
           this.documentListChangedEvent.next(this.documents.slice());

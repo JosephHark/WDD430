@@ -93,7 +93,7 @@ export class ContactsService {
       'Content-Type': 'application/json'
     });
 
-    this.http.put('https://localhost:3000/contacts', contacts, { headers: headers })
+    this.http.put('https://cmswithfirebase-1-default-rtdb.firebaseio.com/contacts.json', contacts, { headers: headers })
       .subscribe(
         () => {
           this.contactListChangedEvent.next(this.contacts.slice());

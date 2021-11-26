@@ -1,1 +1,65 @@
-<p>dungeon-detail works!</p>
+Skip to content
+Why GitHub? 
+Team
+Enterprise
+Explore 
+Marketplace
+Pricing 
+Search
+Sign in
+Sign up
+jshemas
+/
+textAdventure
+Public
+81
+Code
+Issues
+Pull requests
+10
+Actions
+Projects
+Wiki
+Security
+Insights
+textAdventure/index.html
+
+jshemas fixing tons of bugs
+Latest commit 415ec47 on Nov 14, 2014
+ History
+ 0 contributors
+46 lines (46 sloc)  1.6 KB
+   
+<!DOCTYPE html>
+<html lang="en" ng-app="textAdventureApp">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>Text Adventure</title>
+	</head>
+	<body role="document" ng-controller="textAdventureCtrl">
+		<div class="container">
+			<h1>
+				{{adventure.adventureName}}
+			</h1>
+			</br>
+			<p ng-show="adventure.currentPath == 0">
+				{{adventure.adventureDescription}}
+			</p>
+			<p>
+				{{adventure.currentPathDescription}}
+			</p>
+			<ul>
+				<li ng-show="adventure.playerAlive" ng-hide="adventure.hasWon" ng-repeat="path in adventure.currentPaths">
+					<span ng-click="pathClick(path.id)">
+						{{path.pathDescription}}
+					</span>
+				</li>
+			</ul>
+			
+		</div>
+	</body>
+</html>
