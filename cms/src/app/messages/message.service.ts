@@ -10,19 +10,16 @@ import { Subject } from 'rxjs';
 export class MessagesService {
   messageListChangedEvent = new Subject<Message[]>();
   messages: Message[] = [];
-
   maxMessageId: number;
 
-  constructor(private http: HttpClient) {
-    this.getMessages();
-  }
+  constructor(private http: HttpClient) {  }
+
   getMessages() {
-    this.http.get('https://localhost:3000/messages')
+    this.http.get<{ message: string, messages: Message[] }>('http://localhost:3000/messages')
       .subscribe(
-        (messages: Message[]) => {
-          this.messages = messages;
-          this.maxMessageId = this.getMaxId();
-          this.messages.sort((a, b) => (a.Id < b.Id) ? 1 : (a.Id > b.Id) ? -1 : 0)
+        (messagesData) => {
+          this.messages = messagesData.messages;
+          this.messages.sort((a, b) => (a.id < b.id) ? 1 : (a.id > b.id) ? -1 : 0)
           this.messageListChangedEvent.next(this.messages.slice());
         },
         (error: any) => {
@@ -31,9 +28,9 @@ export class MessagesService {
       )
   }
 
-  getMessage(Id: string): Message {
+  getMessage(id: string): Message {
     for (const message of this.messages) {
-      if (message.Id === Id) {
+      if (message.id === id) {
         return message;
       }
     }
@@ -43,30 +40,31 @@ export class MessagesService {
   getMaxId(): number {
     let maxId = 0;
     for (const message of this.messages) {
-      const currentId = +message.Id;
+      const currentId = +message.id;
       if (currentId > maxId) {
         maxId = currentId;
       }
     }
     return maxId;
   }
-  addMessage(message: Message) {
-    this.messages.push(message);
-    this.storeMessages();
-  }
 
-  storeMessages() {
-    let messages = JSON.stringify(this.messages);
+  addMessage(newMessage: Message) {
+    if (!newMessage) {
+      return;
+    }
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-    this.http.put('https://localhost:3000/messages', messages, { headers: headers })
+    newMessage.id = '';
+    const strMessage = JSON.stringify(newMessage);
+
+    this.http.post('http://localhost:3000/messages', strMessage, { headers: headers })
       .subscribe(
-        () => {
+        (messages: Message[]) => {
+          this.messages = messages;
           this.messageListChangedEvent.next(this.messages.slice());
-        }
-      )
+        });
   }
 }

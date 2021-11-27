@@ -52,7 +52,7 @@ app.use('/', index);
 app.use('/messages', messageRoutes);
 app.use('/contacts', contactRoutes);
 app.use('/documents', documentsRoutes);
-mongoose.connect('mongodb+srv://JosephHark:0KTpRWMG4VhBlFjt@cluster0.44wya.mongodb.net/test?authSource=admin&replicaSet=atlas-vo138t-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true',
+mongoose.connect('mongodb+srv://JosephHark:0KTpRWMG4VhBlFjt@cluster0.44wya.mongodb.net/CMS?authSource=admin&replicaSet=atlas-vo138t-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true',
    { useNewUrlParser: true }, (err, res) => {
       if (err) {
          console.log('Connection failed: ' + err);
