@@ -19,7 +19,7 @@ export class MessagesService {
       .subscribe(
         (messagesData) => {
           this.messages = messagesData.messages;
-          this.messages.sort((a, b) => (a.id < b.id) ? 1 : (a.id > b.id) ? -1 : 0)
+          this.messages.sort((a, b) => (a.Id < b.Id) ? 1 : (a.Id > b.Id) ? -1 : 0)
           this.messageListChangedEvent.next(this.messages.slice());
         },
         (error: any) => {
@@ -30,7 +30,7 @@ export class MessagesService {
 
   getMessage(id: string): Message {
     for (const message of this.messages) {
-      if (message.id === id) {
+      if (message.Id === id) {
         return message;
       }
     }
@@ -40,7 +40,7 @@ export class MessagesService {
   getMaxId(): number {
     let maxId = 0;
     for (const message of this.messages) {
-      const currentId = +message.id;
+      const currentId = +message.Id;
       if (currentId > maxId) {
         maxId = currentId;
       }
@@ -57,7 +57,7 @@ export class MessagesService {
       'Content-Type': 'application/json'
     });
 
-    newMessage.id = '';
+    newMessage.Id = '';
     const strMessage = JSON.stringify(newMessage);
 
     this.http.post('http://localhost:3000/messages', strMessage, { headers: headers })
