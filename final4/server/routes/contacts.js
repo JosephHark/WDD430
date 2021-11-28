@@ -45,16 +45,7 @@ router.post('/', (req, res, next) => {
   const contact = new Contact({
     id: maxContactId,
     name: req.body.name,
-    description: req.body.description,
-    url: req.body.url,
-    group: req.body.group
   });
-
-  if (contact.group && contact.group.length > 0) {
-    for (let groupContact of contact.group) {
-      groupContact = groupContact._id;
-    }
-  }
 
   contact.save()
     .then(createdContact => {
@@ -72,8 +63,6 @@ router.put('/:id', (req, res, next) => {
   Contact.findOne({ id: req.params.id })
     .then(contact => {
       contact.name = req.body.name;
-      contact.description = req.body.description;
-      contact.url = req.body.url;
 
       Contact.updateOne({ id: req.params.id }, contact)
         .then(result => {

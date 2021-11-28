@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let contactSchema = new Schema({
+let documentSchema = new Schema({
   id: {
     type: String,
     required: true
@@ -9,7 +9,11 @@ let contactSchema = new Schema({
   name: {
     type: String,
     required: true
+  },
+  url: {
+    type: String,
+    required: true
   }
 });
 
-module.exports = mongoose.model('Contact', contactSchema);
+module.exports = mongoose.model('Document', documentSchema);
