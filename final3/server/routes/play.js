@@ -1,7 +1,8 @@
+
 var express = require('express');
 var router = express.Router();
 const sequenceGenerator = require('./sequenceGenerator');
-const Document = require('../models/document');
+const Document = require('../models/play');
 
 router.get('/', (req, res, next) => {
     Document.find()

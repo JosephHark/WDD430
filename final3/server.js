@@ -11,9 +11,8 @@ var logger = require('morgan');
 var index = require('./server/routes/app');
 
 // ... ADD CODE TO IMPORT YOUR ROUTING FILES HERE ... 
-const messageRoutes = require('./server/routes/messages');
 const contactRoutes = require('./server/routes/contacts');
-const documentsRoutes = require('./server/routes/documents');
+const playRoutes = require('./server/routes/play');
 // establish a connection to the mongo database
 
 var app = express(); // create an instance of express
@@ -49,9 +48,8 @@ app.use(express.static(path.join(__dirname, 'dist/cms')));
 app.use('/', index);
 
 // ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ...
-app.use('/messages', messageRoutes);
+app.use('/play', playRoutes);
 app.use('/contacts', contactRoutes);
-app.use('/documents', documentsRoutes);
 mongoose.connect('mongodb+srv://JosephHark:0KTpRWMG4VhBlFjt@cluster0.44wya.mongodb.net/CMS?authSource=admin&replicaSet=atlas-vo138t-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true',
    { useNewUrlParser: true }, (err, res) => {
       if (err) {

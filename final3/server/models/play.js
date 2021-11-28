@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-let documentSchema = new Schema({
+let playSchemea = new Schema({
   id: {
     type: String,
     required: true
@@ -16,4 +16,4 @@ let documentSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Document', documentSchema);
+module.exports = mongoose.model('play', playSchemea);
