@@ -3,10 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { ContactsDetailComponent } from './contacts/contacts-detail/contacts-detail.component';
+import { ContactsEditComponent } from './contacts/contacts-edit/contacts-edit.component';
+import { ContactsListComponent } from './contacts/contacts-list/contacts-list.component';
+import { ContactsItemComponent } from './contacts/contacts-item/contacts-item.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ContactsComponent,
+    ContactsDetailComponent,
+    ContactsEditComponent,
+    ContactsListComponent,
+    ContactsItemComponent
   ],
   imports: [
     BrowserModule,
