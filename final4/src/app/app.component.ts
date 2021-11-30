@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: '<div class="wrapper flex flex-column center h-100 w-100"><router-outlet></router-outlet></div>',
 })
 export class AppComponent {
-  title = 'final4';
 }
