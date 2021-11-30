@@ -8,7 +8,7 @@ import { ContactsDetailComponent } from './contacts/contacts-detail/contacts-det
 import { ContactsEditComponent } from './contacts/contacts-edit/contacts-edit.component';
 import { ContactsListComponent } from './contacts/contacts-list/contacts-list.component';
 import { ContactsItemComponent } from './contacts/contacts-item/contacts-item.component';
-import { PlayComponent } from './homepage/homepage.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { PlayComponent } from './homepage/homepage.component';
     ContactsEditComponent,
     ContactsListComponent,
     ContactsItemComponent,
-    PlayComponent
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
