@@ -17,12 +17,13 @@ export class GameEngineService {
   $gameStateChanged: Observable<GameState>;
   stateDetails = new Map<GameState, StateDetails>();
 
-  private activePlayer: string ;
+  private activePlayer!: string ;
   private stateBroadcast = new ReplaySubject<GameState>();
-  private winningColor: string;
+  private winningColor!: string;
 
   constructor() {
     this.stateDetails['usersRequired'] = {
+      
       state: 'usersRequired',
       title: 'Users Required',
       message: () => 'Add at least two players to begin...'

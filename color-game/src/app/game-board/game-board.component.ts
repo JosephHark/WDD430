@@ -30,8 +30,8 @@ import {
   ],
 })
 export class ColorBlockComponent {
-  @Input() classes: string[];
-  @Input() color: string;
+  @Input() classes!: string[];
+  @Input() color!: string;
 
   get allClasses() {
     return this.isSelected
@@ -44,7 +44,7 @@ export class ColorBlockComponent {
   isClicked = false;
   isSelected: boolean = false;
 
-  private currentState: GameState ;
+  private currentState!: GameState ;
   private isWinningColor = false;
 
   constructor(private readonly gameEngine: GameEngineService) {

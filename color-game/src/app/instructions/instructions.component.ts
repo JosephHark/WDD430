@@ -7,7 +7,7 @@ import { GameEngineService, GameState, StateDetails } from '../services/game-eng
   styleUrls: ['./instructions.component.scss']
 })
 export class InstructionsComponent {
-  currentState: GameState;
+  currentState!: GameState;
 
   get message() {
     return this.details.message();
