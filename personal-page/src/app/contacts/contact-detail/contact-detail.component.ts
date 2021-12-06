@@ -8,7 +8,7 @@ import { ContactsService } from '../contacts.service';
   styleUrls: ['./contact-detail.component.css']
 })
 export class ContactDetailComponent implements OnInit {
-  contact!: Contact;
+  contact: Contact;
   constructor(private ContactsService: ContactsService, private router: Router, private route: ActivatedRoute) { }
   ngOnInit(): void {
     //subscribe to current active route and get the id from param

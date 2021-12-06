@@ -11,10 +11,11 @@ import { ContactsService } from '../contacts.service';
 })
 export class ContactEditComponent implements OnInit {
    contact: Contact = null;
-   originalContact!: Contact;
+   originalContact: Contact;
    groupContacts: Contact[] = [];
    editMode: boolean = false;
    hasGroup: boolean = false;
+   invalidGroupContact: boolean;
 constructor(private ContactsService: ContactsService,private router: Router,private route: ActivatedRoute) { }
 ngOnInit(): void {
   this.route.params.subscribe(
