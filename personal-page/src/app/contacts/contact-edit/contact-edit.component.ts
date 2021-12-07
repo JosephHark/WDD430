@@ -10,7 +10,7 @@ import { ContactsService } from '../contacts.service';
   styleUrls: ['./contact-edit.component.css']
 })
 export class ContactEditComponent implements OnInit {
-   contact: Contact = null;
+   contact: Contact;
    originalContact: Contact;
    groupContacts: Contact[] = [];
    editMode: boolean = false;
@@ -52,7 +52,7 @@ onCancel() {
 onSubmit(form: NgForm) {
   const values = form.value;
 
-  const newContact = new Contact(null, values.name, values.email, values.phone, values.imageUrl, this.groupContacts);
+  const newContact = new Contact(values.name, values.email, values.phone, values.imageUrl, this.groupContacts);
 
   if (this.editMode === true) {
     this.ContactsService.updateContact(this.originalContact, newContact);
